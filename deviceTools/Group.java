@@ -32,13 +32,37 @@ public class Group {
 		}
 	}
 	
+	public void deleteDevice(Device device){
+		if(devices.contains(device) ){
+			devices.remove(device);
+			return; // no need to go further, the hierarchy can contain the device only once
+		}
+		Iterator<Group> itUtil = this.kids.iterator();
+		while(itUtil.hasNext()){
+			itUtil.next().deleteDevice(device);
+		}
+	}
+	
+	/**
+	 * @TODO check the group deletion 
+	 */
+	
+	public void deleteGroup(Group group){
+		if(kids.contains(group) ){
+			kids.remove(group);
+			return; // no need to go further, the hierarchy can contain the device only once
+		}
+		Iterator<Group> itUtil = this.kids.iterator();
+		while(itUtil.hasNext()){
+			itUtil.next().deleteGroup(group);
+		}
+	}
+	
 	private void addGroup(Group group) throws NoDuplicateGroupsException{
 		this.kids.add(group);
 	}
 	
-	public void deleteGroup(Group group){
-		this.kids.remove(group);
-	}
+	//	this.kids.remove(group);
 	
 	/**
 	 * adds a group to a specific group to the hierarchy, we have this method in case we are identifying the groups 

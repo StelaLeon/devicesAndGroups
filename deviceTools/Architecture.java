@@ -3,7 +3,7 @@ package deviceTools;
 import java.util.List;
 import java.util.Set;
 
-public class Architecture {
+public class Architecture implements IGroupCommand{
 
 	private Group root;
 	/**
@@ -22,7 +22,7 @@ public class Architecture {
 	/**
 	 * query to get a list of groups the device belongs to.
 	 * @param device
-	 * @return
+	 * @return list of groups the device belongs to
 	 */
 	public List<Group> getGroupsOfDevice(Device device){
 		return device.groups;
@@ -31,10 +31,30 @@ public class Architecture {
 	/**
 	 * query to get a list of devices group owns. 
 	 * @param groupName
-	 * @return
+	 * @return list of devices group owns
 	 */
 	public Set<Device> getDevicesOfGroup(String groupName){
 		Group group = root.getInstanceOfGroup(groupName);
 		return group.getDevices();
+	}
+/**
+ * @TODO implement group deletion and of course UNIT TESTS
+ */
+	@Override
+	public void deleteGroup(String groupName) {
+		Group groupToBeDeleted = root.getInstanceOfGroup(groupName);
+		
+		
+	}
+
+	@Override
+	public void deleteKidOfGroup(String groupName, String kidName) {
+		Group groupToBeDeleted = root.getInstanceOfGroup(kidName);
+		root.deleteGroupFromGroup(groupName, groupToBeDeleted);
+	}
+
+	@Override
+	public void deleteDeviceFromGroup(String groupRoot, Device device) {
+		this.root.deleteDevice(device);
 	}
 }

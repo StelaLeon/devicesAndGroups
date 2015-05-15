@@ -57,5 +57,6 @@ public class Device implements Runnable {
 		default: System.out.println("This device has no meaning... ");
 			break;
 		}
+		Thread.yield();
 	}
 }

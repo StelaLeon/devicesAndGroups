@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DeviceController implements IDeviceCommand{
 	Device device;
-	
+	ScheduledFuture<?> scheduledFuture;
 	private ScheduledExecutorService scheduledExecutorService;
 	
 	public DeviceController(Device device) {
@@ -18,16 +18,18 @@ public class DeviceController implements IDeviceCommand{
 
 	@Override
 	public void execute() {
-		@SuppressWarnings("unchecked")
-		ScheduledFuture scheduledFuture =
+		if(this.scheduledExecutorService.isShutdown()){
+			scheduledExecutorService = Executors.newScheduledThreadPool(5);
+		}
+		scheduledFuture =
 			scheduledExecutorService.scheduleAtFixedRate(device,
 					0,
-					1,
+					6,
 					TimeUnit.SECONDS);
 	}
 	
 	public void shutDownTask(){
-		this.scheduledExecutorService.shutdown();
+		this.scheduledFuture.cancel(false);
 	}
 	
 	public void startTask(){

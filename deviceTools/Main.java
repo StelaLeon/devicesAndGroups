@@ -11,12 +11,8 @@ public final class Main {
 		deviceOne.setMeaning(Meaning.Humidity);
 		DeviceController deviceController= new DeviceController(deviceOne);
 
-		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			String line = bufferedReader.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Thread userInput = new Thread( new UserCommandLine(deviceController));
+		userInput.start();
 	}
 
 }

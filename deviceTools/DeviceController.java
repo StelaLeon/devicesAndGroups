@@ -1,6 +1,5 @@
 package deviceTools;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -18,17 +17,15 @@ public class DeviceController implements IDeviceCommand{
 
 	@Override
 	public void execute() {
-		if(this.scheduledExecutorService.isShutdown()){
-			scheduledExecutorService = Executors.newScheduledThreadPool(5);
-		}
 		scheduledFuture =
 			scheduledExecutorService.scheduleAtFixedRate(device,
 					0,
-					6,
+					3,
 					TimeUnit.SECONDS);
 	}
 	
 	public void shutDownTask(){
+		System.out.println("stopping the task");
 		this.scheduledFuture.cancel(false);
 	}
 	

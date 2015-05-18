@@ -42,10 +42,7 @@ public class Group {
 			itUtil.next().deleteDevice(device);
 		}
 	}
-	
-	/**
-	 * @TODO check the group deletion 
-	 */
+
 	
 	public void deleteGroup(Group group){
 		if(kids.contains(group) ){
@@ -138,5 +135,14 @@ public class Group {
 
 	public Set<Group> getKids() {
 		return kids;
+	}
+	
+	public String toString(){
+		StringBuilder stringRepresentation = new StringBuilder();
+		Iterator<Group> itUtil = this.kids.iterator();
+		while(itUtil.hasNext()){
+			stringRepresentation.append(itUtil.next().getName()).append("\n\t\t");
+		}
+		return stringRepresentation.toString();
 	}
 }

@@ -5,18 +5,20 @@ import java.util.Set;
 
 public interface IGroupCommand {
 
-	public void addGroupToGroup(String groupParent, String groupToAdd) throws NoDuplicateGroupsException ;
+	public void addGroupToGroup(String hierarchy, String groupParent, String groupToAdd) throws NoDuplicateGroupsException ;
 	
-	public void addDeviceToGroup(String groupName, Device device) throws NoDuplicatedDevicesException;
+	public void addDeviceToGroup(String hierarchy, String groupName, Device device) throws NoDuplicatedDevicesException;
 	
-	public List<Group> getGroupsOfDevice(Device device);
+	public List<Group> getGroupsOfDevice(String hierarchy, Device device);
 	
 	public Set<Device> getDevicesOfGroup(String groupName);
 	
 	public void deleteGroup(String groupName);
 	
-	public void deleteKidOfGroup(String groupName, String kidName );
+	public void deleteKidOfGroup(String hierarchy, String groupName, String kidName );
 	
-	public void deleteDeviceFromGroup(String group, Device device);
+	public void deleteDeviceFromGroup(String hierarchy, String group, Device device);
+	
+	public void addHierarchy(String rootHierarchyName);
 	
 }

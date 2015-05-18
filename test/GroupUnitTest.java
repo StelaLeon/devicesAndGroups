@@ -126,6 +126,40 @@ public class GroupUnitTest {
 		}
 	}
 	
+	@Test
+	public void testDeleteDeviceFromGroup() throws NoDuplicateGroupsException{
+		String groupName = "BerlinGroup";
+		String groupZone1Name = "BerlinZoneGroup1";
+		String groupZone2Name = "BerlinZoneGroup2";
+		
+		Group berlinGroup = new Group(groupName);
+		Group berlinZone1 = new Group(groupZone1Name);
+		Group berlinZone2 = new Group(groupZone2Name);
+		
+		berlinGroup.addGroupToGroup(groupName, berlinZone1);
+		berlinGroup.addGroupToGroup(groupZone1Name, berlinZone2);
+		
+		Device device = new Device("device1");
+
+		Group tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
+		Assert.assertNotNull(tmpZone2);
+		
+		Assert.assertEquals(groupZone2Name, tmpZone2.getName());
+		
+		try {
+			berlinGroup.addDevice(groupZone2Name, device);
+		} catch (NoDuplicatedDevicesException e) {
+			fail("it shouldn't throw an exception the first time when you add a device");
+		}
+		
+		Assert.assertTrue(berlinZone2.getDevices().contains(device));
+		
+		berlinGroup.deleteDevice(device);
+		
+		Assert.assertFalse(berlinZone2.getDevices().contains(device));
+
+	}
+	
 	/**
 	 * add a group in the hierarchy tests
 	 * 
@@ -234,7 +268,49 @@ public class GroupUnitTest {
 	}
 	
 	@Test
-	public void testDeleteGroupFromTheHierarchy(){
+	public void testDeleteGroupFromTheHierarchy() throws NoDuplicateGroupsException{
+		String groupName = "BerlinGroup";
+		String groupZone1Name = "BerlinZoneGroup1";
+		String groupZone2Name = "BerlinZoneGroup2";
 		
+		Group berlinGroup = new Group(groupName);
+		Group berlinZone1 = new Group(groupZone1Name);
+		Group berlinZone2 = new Group(groupZone2Name);
+		
+		berlinGroup.addGroupToGroup(groupName, berlinZone1);
+		berlinGroup.addGroupToGroup(groupZone1Name, berlinZone2);
+		
+		Group tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
+		Assert.assertNotNull(tmpZone2);
+		
+		Assert.assertEquals(groupZone2Name, tmpZone2.getName());
+		
+		berlinGroup.deleteGroup(berlinZone2);
+		
+		Assert.assertNull(berlinGroup.getInstanceOfGroup(groupZone2Name));
 	}
+	
+	@Test
+	public void testDeleteGroupFromGroup() throws NoDuplicateGroupsException{
+		String groupName = "BerlinGroup";
+		String groupZone1Name = "BerlinZoneGroup1";
+		String groupZone2Name = "BerlinZoneGroup2";
+		
+		Group berlinGroup = new Group(groupName);
+		Group berlinZone1 = new Group(groupZone1Name);
+		Group berlinZone2 = new Group(groupZone2Name);
+		
+		berlinGroup.addGroupToGroup(groupName, berlinZone1);
+		berlinGroup.addGroupToGroup(groupZone1Name, berlinZone2);
+		
+		Group tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
+		Assert.assertNotNull(tmpZone2);
+		
+		Assert.assertEquals(groupZone2Name, tmpZone2.getName());
+		
+		berlinGroup.deleteGroupFromGroup(groupZone1Name, berlinZone2);
+		
+		Assert.assertNull(berlinGroup.getInstanceOfGroup(groupZone2Name)); 
+	}
+	
 }

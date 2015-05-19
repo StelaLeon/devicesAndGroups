@@ -1,4 +1,4 @@
-package deviceTools;
+package mainTools;
 
 import group.DeviceGroup;
 
@@ -12,7 +12,11 @@ import device.interaction.Meaning;
 public final class Main {
 
 	public static Map<String, DeviceGroup> hierarchy =  new HashMap<String,DeviceGroup>();
-	public static Device deviceTest; 
+	/**
+	 * @TODO connect the hierarchy to the DeviceController... one entry point for the data.
+	 */
+	
+	public static Device deviceTest;  
 	
 	public static void main(String[] args) {
 		deviceTest = new Device("deviceOne");

@@ -1,9 +1,9 @@
-package deviceTools;
+package mainTools;
 
 import group.DeviceGroup;
 import group.commands.AddDeviceToGroupCommand;
 import group.commands.AddGroupCommand;
-import group.commands.ListCommand;
+import group.commands.ListGroupCommand;
 import group.commands.RemoveGroupCommand;
 
 import java.io.BufferedReader;
@@ -36,7 +36,7 @@ public class UserCommandLine implements Runnable{
 					lastDeviceCommand.shutDownTask();
 				}
 				else if(line.contains("list all")){
-					new ListCommand().execute(tokens);
+					new ListGroupCommand().execute(tokens);
 				}
 				else if(line.contains("add root")){
 					//add a new hierarchy to the architecture

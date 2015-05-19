@@ -7,10 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import mainTools.Main;
 import device.interaction.Device;
-import deviceTools.Main;
 
-public class ListCommand implements GroupCommand {
+public class ListGroupCommand implements GroupCommand {
 
 	@Override
 	public void execute(String[] params) {

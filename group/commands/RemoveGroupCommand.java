@@ -4,7 +4,7 @@ import group.DeviceGroup;
 
 import java.util.Iterator;
 
-import deviceTools.Main;
+import mainTools.Main;
 
 public class RemoveGroupCommand implements GroupCommand {
 

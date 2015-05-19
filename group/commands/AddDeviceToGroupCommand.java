@@ -1,8 +1,8 @@
 package group.commands;
 
+import mainTools.Main;
 import group.NoDuplicatedDevicesException;
 import device.interaction.Device;
-import deviceTools.Main;
 
 public class AddDeviceToGroupCommand implements GroupCommand {
 

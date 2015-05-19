@@ -1,4 +1,6 @@
-package deviceTools;
+package device.interaction;
+
+import group.Group;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +15,7 @@ public class Device implements Runnable {
 	
 	protected Meaning meaning;
 	
-	protected List<Group> groups= new LinkedList<>();
+	public List<Group> groups= new LinkedList<>();
 
 	public Device(String name){
 		this.name = name;

@@ -1,14 +1,14 @@
 package test;
 
 import static org.junit.Assert.fail;
+import group.Group;
+import group.NoDuplicateGroupsException;
+import group.NoDuplicatedDevicesException;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import deviceTools.Device;
-import deviceTools.Group;
-import deviceTools.NoDuplicateGroupsException;
-import deviceTools.NoDuplicatedDevicesException;
+import device.interaction.Device;
 
 public class GroupUnitTest {
 

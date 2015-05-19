@@ -1,4 +1,4 @@
-package deviceTools;
+package device.interaction;
 
 public interface IDeviceCommand {
 

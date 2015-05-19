@@ -1,4 +1,4 @@
-package deviceTools;
+package group;
 
 public class NoDuplicatedDevicesException extends Exception{
 

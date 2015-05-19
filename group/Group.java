@@ -1,8 +1,10 @@
-package deviceTools;
+package group;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import device.interaction.Device;
 
 public class Group {
 	private String name;

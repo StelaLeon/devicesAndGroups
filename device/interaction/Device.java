@@ -1,6 +1,6 @@
 package device.interaction;
 
-import group.Group;
+import group.DeviceGroup;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,17 +15,17 @@ public class Device implements Runnable {
 	
 	protected Meaning meaning;
 	
-	public List<Group> groups= new LinkedList<>();
+	public List<DeviceGroup> groups= new LinkedList<>();
 
 	public Device(String name){
 		this.name = name;
 	}
 	
-	public List<Group> getGroups() {
+	public List<DeviceGroup> getGroups() {
 		return groups;
 	}
 
-	public void addGroup(Group group) {
+	public void addGroup(DeviceGroup group) {
 		this.groups.add(group);
 	}
 
@@ -45,7 +45,7 @@ public class Device implements Runnable {
 		this.meaning = meaning;
 	}
 
-	public void deleteGroup(Group group){
+	public void deleteGroup(DeviceGroup group){
 		this.groups.remove(group);
 	}
 

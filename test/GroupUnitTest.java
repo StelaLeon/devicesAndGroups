@@ -1,7 +1,7 @@
 package test;
 
 import static org.junit.Assert.fail;
-import group.Group;
+import group.DeviceGroup;
 import group.NoDuplicateGroupsException;
 import group.NoDuplicatedDevicesException;
 
@@ -15,7 +15,7 @@ public class GroupUnitTest {
 	@Test
 	public void testAddDeviceToGroup() throws Exception {
 		String groupName = "BerlinGroup";
-		Group berlinGroup = new Group(groupName);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
 		Device device = new Device("device1");
 		
 		berlinGroup.addDevice(groupName, device);
@@ -30,11 +30,11 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
 		Device device = new Device("device1");
 		
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 
 		berlinGroup.addGroupToGroup(groupName,berlinZone1);
 		berlinGroup.addGroupToGroup(groupZone1Name,berlinZone2);
@@ -57,11 +57,11 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
 		Device device = new Device("device1");
 		
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 
 		berlinGroup.addGroupToGroup(groupName,berlinZone1);
 		berlinGroup.addGroupToGroup(groupZone1Name,berlinZone2);
@@ -96,11 +96,11 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
 		Device device = new Device("device1");
 		
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 
 		berlinGroup.addGroupToGroup(groupName,berlinZone1);
 		berlinGroup.addGroupToGroup(groupZone1Name,berlinZone2);
@@ -132,16 +132,16 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 		
 		berlinGroup.addGroupToGroup(groupName, berlinZone1);
 		berlinGroup.addGroupToGroup(groupZone1Name, berlinZone2);
 		
 		Device device = new Device("device1");
 
-		Group tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
+		DeviceGroup tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
 		Assert.assertNotNull(tmpZone2);
 		
 		Assert.assertEquals(groupZone2Name, tmpZone2.getName());
@@ -173,9 +173,9 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 		
 		try {
 			berlinGroup.addGroupToGroup(groupName,berlinZone1);
@@ -206,9 +206,9 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 		
 		try {
 			berlinGroup.addGroupToGroup(groupName,berlinZone1);
@@ -241,9 +241,9 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 		
 		try {
 			berlinGroup.addGroupToGroup(groupName,berlinZone1);
@@ -273,14 +273,14 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 		
 		berlinGroup.addGroupToGroup(groupName, berlinZone1);
 		berlinGroup.addGroupToGroup(groupZone1Name, berlinZone2);
 		
-		Group tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
+		DeviceGroup tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
 		Assert.assertNotNull(tmpZone2);
 		
 		Assert.assertEquals(groupZone2Name, tmpZone2.getName());
@@ -296,14 +296,14 @@ public class GroupUnitTest {
 		String groupZone1Name = "BerlinZoneGroup1";
 		String groupZone2Name = "BerlinZoneGroup2";
 		
-		Group berlinGroup = new Group(groupName);
-		Group berlinZone1 = new Group(groupZone1Name);
-		Group berlinZone2 = new Group(groupZone2Name);
+		DeviceGroup berlinGroup = new DeviceGroup(groupName);
+		DeviceGroup berlinZone1 = new DeviceGroup(groupZone1Name);
+		DeviceGroup berlinZone2 = new DeviceGroup(groupZone2Name);
 		
 		berlinGroup.addGroupToGroup(groupName, berlinZone1);
 		berlinGroup.addGroupToGroup(groupZone1Name, berlinZone2);
 		
-		Group tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
+		DeviceGroup tmpZone2 = berlinGroup.getInstanceOfGroup(groupZone2Name);
 		Assert.assertNotNull(tmpZone2);
 		
 		Assert.assertEquals(groupZone2Name, tmpZone2.getName());

@@ -1,6 +1,6 @@
 package group.commands;
 
-import group.Group;
+import group.DeviceGroup;
 
 import java.util.Collections;
 import java.util.Iterator;

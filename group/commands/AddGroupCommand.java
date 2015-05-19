@@ -1,6 +1,6 @@
 package group.commands;
 
-import group.Group;
+import group.DeviceGroup;
 import group.NoDuplicateGroupsException;
 import deviceTools.Main;
 
@@ -24,15 +24,15 @@ public class AddGroupCommand implements GroupCommand {
 	}
 	
 	public void addGroupToGroup(String hierarchy, String groupParent, String groupToAdd) throws NoDuplicateGroupsException{
-		Group root = this.getHierarchyRoot(hierarchy);
-		Group group = root.getInstanceOfGroup(groupToAdd);
+		DeviceGroup root = this.getHierarchyRoot(hierarchy);
+		DeviceGroup group = root.getInstanceOfGroup(groupToAdd);
 		if(group==null){
-			group = new Group(groupToAdd);
+			group = new DeviceGroup(groupToAdd);
 		}
 		root.addGroupToGroup(groupParent, group);
 	} 
 	
-	public Group getHierarchyRoot(String rootName){
+	public DeviceGroup getHierarchyRoot(String rootName){
 		return Main.hierarchy.get(rootName);
 	}
 	

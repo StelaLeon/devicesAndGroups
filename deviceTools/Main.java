@@ -1,6 +1,6 @@
 package deviceTools;
 
-import group.Group;
+import group.DeviceGroup;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import device.interaction.Meaning;
 
 public final class Main {
 
-	public static Map<String, Group> hierarchy =  new HashMap<String,Group>();
+	public static Map<String, DeviceGroup> hierarchy =  new HashMap<String,DeviceGroup>();
 	public static Device deviceTest; 
 	
 	public static void main(String[] args) {

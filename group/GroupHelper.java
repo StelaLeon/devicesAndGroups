@@ -17,7 +17,7 @@ public class GroupHelper {
 	 * @param device
 	 * @return list of groups the device belongs to
 	 */
-	public List<Group> getGroupsOfDevice(String hierarchy, Device device){
+	public List<DeviceGroup> getGroupsOfDevice(String hierarchy, Device device){
 		return device.groups;
 	}
 	
@@ -30,7 +30,7 @@ public class GroupHelper {
 		Set<Device> devices = Collections.emptySet();
 		Iterator<?> groupIt = Main.hierarchy.entrySet().iterator();
 		while(groupIt.hasNext()){
-			Group group = ((Group) groupIt.next()).getInstanceOfGroup(groupName);
+			DeviceGroup group = ((DeviceGroup) groupIt.next()).getInstanceOfGroup(groupName);
 			devices.addAll(group.getDevices());
 		}
 		return devices;

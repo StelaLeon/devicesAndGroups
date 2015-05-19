@@ -1,6 +1,6 @@
 package group.commands;
 
-import group.Group;
+import group.DeviceGroup;
 
 import java.util.Iterator;
 
@@ -19,14 +19,14 @@ public class RemoveGroupCommand implements GroupCommand {
 	public void deleteGroup(String groupName) {
 		Iterator<?> groupIt = Main.hierarchy.entrySet().iterator();
 		while(groupIt.hasNext()){
-			Group root = (Group) groupIt.next();
-			Group groupToBeDeleted = root.getInstanceOfGroup(groupName);
+			DeviceGroup root = (DeviceGroup) groupIt.next();
+			DeviceGroup groupToBeDeleted = root.getInstanceOfGroup(groupName);
 			root.deleteGroup(groupToBeDeleted);
 		}
 	}
 
 	public void deleteKidOfGroup(String root, String groupName, String kidName) {
-		Group groupToBeDeleted = Main.hierarchy.get(root).getInstanceOfGroup(kidName);
+		DeviceGroup groupToBeDeleted = Main.hierarchy.get(root).getInstanceOfGroup(kidName);
 		Main.hierarchy.get(root).deleteGroupFromGroup(groupName, groupToBeDeleted);
 	}
 }

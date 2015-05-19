@@ -1,6 +1,6 @@
 package deviceTools;
 
-import group.Group;
+import group.DeviceGroup;
 import group.commands.AddDeviceToGroupCommand;
 import group.commands.AddGroupCommand;
 import group.commands.ListCommand;
@@ -15,7 +15,10 @@ import device.interaction.IDeviceCommand;
 
 public class UserCommandLine implements Runnable{
 	
-	private IDeviceCommand lastDeviceCommand;
+	/**
+	 * some kind of factory for firing commands according with the input
+	 */
+	private IDeviceCommand lastDeviceCommand; //could be a history of fired commands 
 	
 	@Override
 	public void run() {
@@ -38,7 +41,7 @@ public class UserCommandLine implements Runnable{
 				else if(line.contains("add root")){
 					//add a new hierarchy to the architecture
 					//right format add root <name of the root group>
-					Group root = new Group(tokens[2]);
+					DeviceGroup root = new DeviceGroup(tokens[2]);
 					Main.hierarchy.put(tokens[2], root);
 				}
 				else if(line.contains("add group")){

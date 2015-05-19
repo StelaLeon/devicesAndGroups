@@ -6,24 +6,24 @@ import java.util.Set;
 
 import device.interaction.Device;
 
-public class Group {
+public class DeviceGroup {
 	private String name;
 	
 	private Set<Device> devices; //no duplicates
 		
-	private Set<Group> kids; //no duplicates
+	private Set<DeviceGroup> kids; //no duplicates
 	
-	public Group(String name){
+	public DeviceGroup(String name){
 		this.name = name;
 		this.devices = new HashSet<Device>();
-		this.kids = new HashSet<Group>();
+		this.kids = new HashSet<DeviceGroup>();
 	}
 	
 	public void addDevice(String groupName, Device device) throws NoDuplicatedDevicesException{
 		if(devices.contains(device)){
 			throw new NoDuplicatedDevicesException("You cannot add the device twice in the same hierarchy");
 		}
-		Iterator<Group> itUtil = this.kids.iterator();
+		Iterator<DeviceGroup> itUtil = this.kids.iterator();
 		while(itUtil.hasNext()){
 			itUtil.next().addDevice(groupName, device);
 		}
@@ -39,25 +39,25 @@ public class Group {
 			devices.remove(device);
 			return; // no need to go further, the hierarchy can contain the device only once
 		}
-		Iterator<Group> itUtil = this.kids.iterator();
+		Iterator<DeviceGroup> itUtil = this.kids.iterator();
 		while(itUtil.hasNext()){
 			itUtil.next().deleteDevice(device);
 		}
 	}
 
 	
-	public void deleteGroup(Group group){
+	public void deleteGroup(DeviceGroup group){
 		if(kids.contains(group) ){
 			kids.remove(group);
 			return; // no need to go further, the hierarchy can contain the device only once
 		}
-		Iterator<Group> itUtil = this.kids.iterator();
+		Iterator<DeviceGroup> itUtil = this.kids.iterator();
 		while(itUtil.hasNext()){
 			itUtil.next().deleteGroup(group);
 		}
 	}
 	
-	private void addGroup(Group group) throws NoDuplicateGroupsException{
+	private void addGroup(DeviceGroup group) throws NoDuplicateGroupsException{
 		this.kids.add(group);
 	}
 	
@@ -68,7 +68,7 @@ public class Group {
 	 * @param group
 	 * @throws NoDuplicateGroups 
 	 */
-	public void addGroupToGroup(String groupName, Group group) throws NoDuplicateGroupsException{
+	public void addGroupToGroup(String groupName, DeviceGroup group) throws NoDuplicateGroupsException{
 		if(this.kids.contains(group)){
 			/**
 			 * I assumed that in the context that you cannot add a device twice in the hierarchy
@@ -80,7 +80,7 @@ public class Group {
 			throw new NoDuplicateGroupsException("You cannot add the group twice in the same hierarchy");
 		}
 
-		Iterator<Group> itUtil = kids.iterator();
+		Iterator<DeviceGroup> itUtil = kids.iterator();
 		while(itUtil.hasNext()){
 			itUtil.next().addGroupToGroup(groupName,group);
 		}
@@ -95,12 +95,12 @@ public class Group {
 	 * @param grupName
 	 * @param group
 	 */
-	public void deleteGroupFromGroup(String groupName, Group group){
+	public void deleteGroupFromGroup(String groupName, DeviceGroup group){
 		if(this.name.equals(groupName)){
 			deleteGroup(group);
 			return;
 		}
-		Iterator<Group> itUtil = this.kids.iterator();
+		Iterator<DeviceGroup> itUtil = this.kids.iterator();
 		while(itUtil.hasNext()){
 			itUtil.next().deleteGroupFromGroup(groupName,group);
 		}
@@ -111,13 +111,13 @@ public class Group {
 	 * @param nameToSearch
 	 * @return Group
 	 */
-	public Group getInstanceOfGroup(String nameToSearch){
+	public DeviceGroup getInstanceOfGroup(String nameToSearch){
 		if (this.name.equals(nameToSearch)) {
 			return this;
 		}
-		Iterator<Group> itUtil = this.kids.iterator();
+		Iterator<DeviceGroup> itUtil = this.kids.iterator();
 		while (itUtil.hasNext()) {
-			Group kid = itUtil.next().getInstanceOfGroup(nameToSearch);
+			DeviceGroup kid = itUtil.next().getInstanceOfGroup(nameToSearch);
 			if(kid!=null){
 				return kid;
 			}
@@ -133,14 +133,14 @@ public class Group {
 		return devices;
 	}
 
-	public Set<Group> getKids() {
+	public Set<DeviceGroup> getKids() {
 		return kids;
 	}
 	
 	public String toString(){
 		StringBuilder stringRepresentation = new StringBuilder(name);
 		stringRepresentation.append("\t");
-		Iterator<Group> itUtil = this.kids.iterator();
+		Iterator<DeviceGroup> itUtil = this.kids.iterator();
 		while(itUtil.hasNext()){
 			stringRepresentation.append(itUtil.next().toString()).append("\t\t");
 		}

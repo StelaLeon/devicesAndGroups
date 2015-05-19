@@ -10,8 +10,9 @@ public final class Main {
 		Device deviceOne = new Device("deviceOne");
 		deviceOne.setMeaning(Meaning.Humidity);
 		DeviceController deviceController= new DeviceController(deviceOne);
-
-		Thread userInput = new Thread( new UserCommandLine(deviceController));
+		Architecture groupCommand = new Architecture();
+		
+		Thread userInput = new Thread( new UserCommandLine(deviceController, groupCommand));
 		userInput.start();
 	}
 

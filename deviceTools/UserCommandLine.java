@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserCommandLine implements Runnable{
+	
 	IDeviceCommand deviceCommand;
 	
 	IGroupCommand groupCommand;
 	
-	String latestCommand = "";
 	
-	public UserCommandLine(IDeviceCommand command) {
+	public UserCommandLine(IDeviceCommand command, IGroupCommand groupCommand) {
 		this.deviceCommand= command;
-		this.groupCommand = new Architecture();
+		this.groupCommand = groupCommand;
 	}
 	
 	@Override
@@ -37,15 +37,35 @@ public class UserCommandLine implements Runnable{
 					//right format add root <name of the root group>
 					this.groupCommand.addHierarchy(tokens[2]);
 				}
-				else if(line.contains("add group to-root to-parent")){
+				else if(line.contains("add group")){
 					//add group to-root to-parent <root> <parent> <name of the group>
-					System.out.println("adding groupt to parent within a hierarchy");
-					try{
-						this.groupCommand.addGroupToGroup(tokens[4], tokens[5], tokens[6]);
+					if(tokens.length != 5){
+						System.out.println("usage: add group <to-root> <to-parent of the group> <name of group>");
 					}
-					catch(NoDuplicateGroupsException ex){
-						System.out.println("you are not allowed to add duplicate groups to the same hierarchy");
+					else {
+						try{
+							this.groupCommand.addGroupToGroup(tokens[2], tokens[3], tokens[4]);
+						}
+						catch(NoDuplicateGroupsException ex){
+							System.out.println("you are not allowed to add duplicate groups to the same hierarchy");
+						}
 					}
+				}
+				else if(line.contains("add device")){
+					if(tokens.length < 4){
+						System.out.println("usage: add device <root> <group> <name of the device>");
+					}
+					try {
+						this.groupCommand.addDeviceToGroup(tokens[2], tokens[3], new Device(tokens[4]));
+					} catch (NoDuplicatedDevicesException e) {
+						System.out.println("you are not allowed to add duplicate device to the same hierarchy");
+					}
+				}
+				else if(line.contains("remove group")){
+					if(tokens.length != 2){
+						System.out.println("usage: remove group <name of the group you want to remove>");
+					}
+					this.groupCommand.deleteGroup(tokens[2]);
 				}
 				else{
 					System.out.println("Let me help you. You might wanna use some key words like: start, shutdown, stop.");

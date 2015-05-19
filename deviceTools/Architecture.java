@@ -9,22 +9,18 @@ import java.util.Set;
 
 public class Architecture implements IGroupCommand{
 
-	private Map<String, Group> hierarchies;
+	private Map<String, Group> hierarchies = new HashMap<String,Group>();
 	/**
 	 * make sure this is the only entry point for adding things 
 	 */
-
-	public Architecture(){
-		this.hierarchies = new HashMap<String,Group>();
-	}
 	
 	public void addHierarchy(String rootHierarchyName){
 		Group root = new Group(rootHierarchyName);
-		this.hierarchies.put(rootHierarchyName, root);
+		hierarchies.put(rootHierarchyName, root);
 	}
 	
 	public Group getHierarchyRoot(String rootName){
-		return this.hierarchies.remove(rootName);
+		return this.hierarchies.get(rootName);
 	}
 	
 	public void addGroupToGroup(String hierarchy, String groupParent, String groupToAdd) throws NoDuplicateGroupsException{
@@ -90,7 +86,7 @@ public class Architecture implements IGroupCommand{
 		Iterator<?> groupKeys = this.hierarchies.keySet().iterator();
 		while(groupKeys.hasNext()){
 			String root =  (String) groupKeys.next();
-			stringRepresentation.append(this.hierarchies.get(root).toString()).append("\n\t");
+			stringRepresentation.append(this.hierarchies.get(root).toString()).append("\n");
 		}
 		if(stringRepresentation.toString().isEmpty()){
 			return "Sorry the architecture is empty";

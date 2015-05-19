@@ -59,8 +59,6 @@ public class Group {
 		this.kids.add(group);
 	}
 	
-	//	this.kids.remove(group);
-	
 	/**
 	 * adds a group to a specific group to the hierarchy, we have this method in case we are identifying the groups 
 	 * by name and we need to search them into the hierarchy
@@ -138,10 +136,11 @@ public class Group {
 	}
 	
 	public String toString(){
-		StringBuilder stringRepresentation = new StringBuilder();
+		StringBuilder stringRepresentation = new StringBuilder(name);
+		stringRepresentation.append("\t");
 		Iterator<Group> itUtil = this.kids.iterator();
 		while(itUtil.hasNext()){
-			stringRepresentation.append(itUtil.next().getName()).append("\n\t\t");
+			stringRepresentation.append(itUtil.next().toString()).append("\t\t");
 		}
 		return stringRepresentation.toString();
 	}

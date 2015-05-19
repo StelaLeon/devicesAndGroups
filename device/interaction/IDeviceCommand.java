@@ -2,9 +2,9 @@ package device.interaction;
 
 public interface IDeviceCommand {
 
-	public void execute();
+	public void execute(Device device);
 	
 	public void shutDownTask();
 	
-	public void startTask();
+	public void startTask(Device device);
 }

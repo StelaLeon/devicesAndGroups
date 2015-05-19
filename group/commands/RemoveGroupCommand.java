@@ -9,7 +9,7 @@ import deviceTools.Main;
 public class RemoveGroupCommand implements GroupCommand {
 
 	@Override
-	public void execute(String command, String[] params){
+	public void execute(String[] params){
 		if(params.length != 2){
 			System.out.println("usage: remove group <name of the group you want to remove>");
 		}

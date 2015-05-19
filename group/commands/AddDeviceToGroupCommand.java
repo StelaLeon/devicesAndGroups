@@ -7,7 +7,7 @@ import deviceTools.Main;
 public class AddDeviceToGroupCommand implements GroupCommand {
 
 	@Override
-	public void execute(String command, String[] params) {
+	public void execute(String[] params) {
 		if(params.length < 4){
 			System.out.println("usage: add device <root> <group> <name of the device>");
 		}

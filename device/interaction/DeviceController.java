@@ -6,21 +6,25 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class DeviceController implements IDeviceCommand{
-	Device device;
+	
 	ScheduledFuture<?> scheduledFuture;
+	
 	private ScheduledExecutorService scheduledExecutorService;
 	
-	public DeviceController(Device device) {
-		this.device = device;
+	private long initialTaskDelay = 0;
+	
+	private long period = 3;
+	
+	public DeviceController() {
 		scheduledExecutorService = Executors.newScheduledThreadPool(5);
 	}
 
 	@Override
-	public void execute() {
+	public void execute(Device device) {
 		scheduledFuture =
 			scheduledExecutorService.scheduleAtFixedRate(device,
-					0,
-					3,
+					initialTaskDelay,
+					period,
 					TimeUnit.SECONDS);
 	}
 	
@@ -29,7 +33,7 @@ public class DeviceController implements IDeviceCommand{
 		this.scheduledFuture.cancel(false);
 	}
 	
-	public void startTask(){
-		execute();
+	public void startTask(Device device){
+		execute(device);
 	}
 }

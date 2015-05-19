@@ -12,13 +12,13 @@ import device.interaction.Meaning;
 public final class Main {
 
 	public static Map<String, Group> hierarchy =  new HashMap<String,Group>();
+	public static Device deviceTest; 
 	
 	public static void main(String[] args) {
-		Device deviceOne = new Device("deviceOne");
-		deviceOne.setMeaning(Meaning.Humidity);
-		DeviceController deviceController= new DeviceController(deviceOne);
+		deviceTest = new Device("deviceOne");
+		deviceTest.setMeaning(Meaning.Humidity);
 		
-		Thread userInput = new Thread( new UserCommandLine(deviceController));
+		Thread userInput = new Thread( new UserCommandLine());
 		userInput.start();
 	}
 

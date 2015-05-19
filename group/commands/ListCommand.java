@@ -13,7 +13,7 @@ import deviceTools.Main;
 public class ListCommand implements GroupCommand {
 
 	@Override
-	public void execute(String command, String[] params) {
+	public void execute(String[] params) {
 		System.out.println(toString());
 
 	}

@@ -7,7 +7,7 @@ import deviceTools.Main;
 public class AddGroupCommand implements GroupCommand {
 
 	@Override
-	public void execute(String command, String[] params){
+	public void execute(String[] params){
 		//add group to-root to-parent <root> <parent> <name of the group>
 		if(params.length != 5){
 			System.out.println("usage: add group <to-root> <to-parent of the group> <name of group>");

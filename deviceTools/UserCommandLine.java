@@ -10,15 +10,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import device.interaction.DeviceController;
 import device.interaction.IDeviceCommand;
 
 public class UserCommandLine implements Runnable{
 	
-	IDeviceCommand deviceCommand;
-	
-	public UserCommandLine(IDeviceCommand command) {
-		this.deviceCommand= command;
-	}
+	private IDeviceCommand lastDeviceCommand;
 	
 	@Override
 	public void run() {
@@ -29,12 +26,14 @@ public class UserCommandLine implements Runnable{
 				String line = bufferedReader.readLine();
 				String[] tokens = line.split(" ");
 				if(line.contains("start")){
-					deviceCommand.startTask();
+					lastDeviceCommand= new DeviceController();
+					lastDeviceCommand.startTask(Main.deviceTest);
+					
 				}else if(line.contains("shutdown") || line.contains("stop")){
-					deviceCommand.shutDownTask();
+					lastDeviceCommand.shutDownTask();
 				}
 				else if(line.contains("list all")){
-					new ListCommand().execute(line, tokens);
+					new ListCommand().execute(tokens);
 				}
 				else if(line.contains("add root")){
 					//add a new hierarchy to the architecture
@@ -43,13 +42,13 @@ public class UserCommandLine implements Runnable{
 					Main.hierarchy.put(tokens[2], root);
 				}
 				else if(line.contains("add group")){
-					new AddGroupCommand().execute(line, tokens);
+					new AddGroupCommand().execute(tokens);
 				}
 				else if(line.contains("add device")){
-						new AddDeviceToGroupCommand().execute(line, tokens);
+						new AddDeviceToGroupCommand().execute(tokens);
 				}
 				else if(line.contains("remove group")){
-					new RemoveGroupCommand().execute(line, tokens);
+					new RemoveGroupCommand().execute(tokens);
 				}
 				else{
 					System.out.println("Let me help you. You might wanna use some key words like: start, shutdown, stop.");

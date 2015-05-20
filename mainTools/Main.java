@@ -12,7 +12,7 @@ import device.interaction.Meaning;
 
 public final class Main {
 
-	public static Map<String, DeviceGroup> hierarchy =  new ConcurrentHashMap<String,DeviceGroup>();
+	public static Map<String, DeviceGroup> hierarchy =  new HashMap<String,DeviceGroup>();
 	/**
 	 * @TODO connect the hierarchy to the DeviceController... one entry point for the data.
 	 */
